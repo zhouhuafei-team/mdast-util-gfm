@@ -93,3 +93,49 @@ test('markdown -> mdast', async function (t) {
     )
   }
 })
+
+test('mdast -> markdown', async function (t) {
+  await t.test('should support table options', async function () {
+    assert.equal(
+      toMarkdown(
+        {
+          type: 'table',
+          children: [
+            {
+              type: 'tableRow',
+              children: [
+                {type: 'tableCell', children: [{type: 'text', value: 'aaa'}]},
+                {type: 'tableCell', children: [{type: 'text', value: 'b'}]}
+              ]
+            },
+            {
+              type: 'tableRow',
+              children: [
+                {type: 'tableCell', children: [{type: 'text', value: 'c'}]},
+                {type: 'tableCell', children: [{type: 'text', value: 'ddd'}]}
+              ]
+            }
+          ]
+        },
+        {extensions: [gfmToMarkdown({tablePipeAlign: false})]}
+      ),
+      '| aaa | b |\n| - | - |\n| c | ddd |\n'
+    )
+  })
+
+  await t.test('should support footnote options', async function () {
+    assert.equal(
+      toMarkdown(
+        {
+          type: 'footnoteDefinition',
+          identifier: 'a',
+          children: [
+            {type: 'paragraph', children: [{type: 'text', value: 'b'}]}
+          ]
+        },
+        {extensions: [gfmToMarkdown({firstLineBlank: true})]}
+      ),
+      '[^a]:\n    b\n'
+    )
+  })
+})

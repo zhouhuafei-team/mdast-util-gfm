@@ -346,13 +346,15 @@ Configuration (TypeScript type).
 
 ###### Fields
 
+* `firstLineBlank` (`boolean`, default: `false`)
+  — use a blank line for the first line of footnote definitions
+* `stringLength` (`((value: string) => number)`, default: `s => s.length`)
+  — function to detect the length of table cell content, used when aligning
+  the delimiters between cells
 * `tableCellPadding` (`boolean`, default: `true`)
   — whether to add a space of padding between delimiters and cells
 * `tablePipeAlign` (`boolean`, default: `true`)
   — whether to align the delimiters
-* `stringLength` (`((value: string) => number)`, default: `s => s.length`)
-  — function to detect the length of table cell content, used when aligning
-  the delimiters between cells
 
 ## HTML
 
