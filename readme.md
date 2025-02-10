@@ -143,23 +143,23 @@ A note[^1]
 
 ```js
 import fs from 'node:fs/promises'
-import {gfm} from 'micromark-extension-gfm'
 import {fromMarkdown} from 'mdast-util-from-markdown'
 import {gfmFromMarkdown, gfmToMarkdown} from 'mdast-util-gfm'
 import {toMarkdown} from 'mdast-util-to-markdown'
+import {gfm} from 'micromark-extension-gfm'
 
-const doc = await fs.readFile('example.md')
+const value = await fs.readFile('example.md', 'utf8')
 
-const tree = fromMarkdown(doc, {
+const tree = fromMarkdown(value, {
   extensions: [gfm()],
   mdastExtensions: [gfmFromMarkdown()]
 })
 
 console.log(tree)
 
-const out = toMarkdown(tree, {extensions: [gfmToMarkdown()]})
+const result = toMarkdown(tree, {extensions: [gfmToMarkdown()]})
 
-console.log(out)
+console.log(result)
 ```
 
 …now running `node example.js` yields (positional info removed for brevity):
