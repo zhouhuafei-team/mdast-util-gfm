@@ -56,7 +56,7 @@
     "util"
   ],
   "license": "MIT",
-  "name": "mdast-util-gfm",
+  "name": "zhf.mdast-util-gfm",
   "prettier": {
     "bracketSpacing": false,
     "semi": false,
